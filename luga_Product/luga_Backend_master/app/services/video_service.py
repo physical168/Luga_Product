@@ -4,7 +4,11 @@ from fastapi import HTTPException
 class SyncLabsVideoService:
     def __init__(self, api_key: str):
         self.api_key = api_key
-        self.base_url = "https://api.synclabs.so"
+        # self.base_url = "https://api.synclabs.so"
+        #v2 version
+        self.base_url = "https://api.sync.so/v2/generate"
+        
+        
 
     def sync_audio_with_video(
         self,
@@ -15,7 +19,8 @@ class SyncLabsVideoService:
         synergize: bool = True,
         webhook_url: str = None
     ):
-        endpoint = f"{self.base_url}/lipsync"
+        # endpoint = f"{self.base_url}/lipsync"
+        endpoint = f"{self.base_url}"
         
         headers = {
             "accept": "application/json",
