@@ -3,8 +3,19 @@ import PricingSection from './PricingSection';
 import FAQSection from './FAQSection';
 import BookIntroContactSection from './BookIntroContactSection';
 import Footer from './Footer';
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+        });
+      }
+    };
+
   return (
     <div className="min-h-screen bg-white text-gray-900">
       {/* Navigation Bar */}
@@ -14,11 +25,34 @@ const HomePage = () => {
         </div>
         
         <div className="hidden md:flex items-center space-x-12">
-          <a href="#features" className="text-base hover:text-gray-600 transition-colors">Features</a>
-          <a href="#roadmap" className="text-base hover:text-gray-600 transition-colors">Roadmap</a>
-          <a href="#pricing" className="text-base hover:text-gray-600 transition-colors">Pricing</a>
-          <a href="#about" className="text-base hover:text-gray-600 transition-colors">About</a>
-          <button className="px-6 py-2.5 text-base font-medium text-white bg-black rounded-full hover:bg-gray-800 transition-colors">
+        <button 
+            onClick={() => scrollToSection('features')} 
+            className="text-base hover:text-gray-600 transition-colors"
+          >
+            Features
+          </button>
+          <button 
+            onClick={() => scrollToSection('how-it-works')} 
+            className="text-base hover:text-gray-600 transition-colors"
+          >
+            Roadmap
+          </button>
+          <button 
+            onClick={() => scrollToSection('pricing')} 
+            className="text-base hover:text-gray-600 transition-colors"
+          >
+            Pricing
+          </button>
+          <Link 
+            to="/about" 
+            className="text-base hover:text-gray-600 transition-colors"
+          >
+            About
+          </Link>
+          <button 
+            onClick={() => scrollToSection('book-intro')} 
+            className="px-6 py-2.5 text-base font-medium text-white bg-black rounded-full hover:bg-gray-800 transition-colors"
+          >
             Book an intro
           </button>
         </div>
@@ -36,29 +70,32 @@ const HomePage = () => {
           </p>
 
           <div className="mt-10">
-            <button className="px-6 py-3 text-base font-medium text-white bg-black rounded-full hover:bg-gray-800 transition-colors inline-flex items-center space-x-2">
-              <svg 
-                className="w-5 h-5" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24" 
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth="2" 
-                  d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
-                />
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth="2" 
-                  d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-              <span>Try our demo</span>
-            </button>
+                  <Link 
+                to="/demo"
+                className="px-6 py-3 text-base font-medium text-white bg-black rounded-full hover:bg-gray-800 transition-colors inline-flex items-center space-x-2"
+            >
+          <svg 
+            className="w-5 h-5" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24" 
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth="2" 
+              d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+            />
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth="2" 
+              d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+            </svg>
+            <span>Try our demo</span>
+          </Link>
           </div>
         </div>
 
@@ -126,7 +163,7 @@ const HomePage = () => {
         </div>
 
         {/* Features Section */}
-        <div className="mt-32 pb-16 bg-gradient-to-b from-purple-50/50">
+        <div id="features" className="mt-32 pb-16 bg-gradient-to-b from-purple-50/50">
           <div className="max-w-6xl mx-auto px-4">
             {/* Features Header */}
             <div className="text-center mb-24">
@@ -184,7 +221,7 @@ const HomePage = () => {
         </div>
 
             {/* How It Works Section */}
-      <div className="mt-16 pb-16 bg-gradient-to-b from-purple-50">
+      <div id="how-it-works" className="mt-16 pb-16 bg-gradient-to-b from-purple-50">
         <div className="max-w-6xl mx-auto px-4 text-left">
           {/* How It Works Header */}
           <div className="mb-24">
@@ -627,9 +664,13 @@ const HomePage = () => {
           </div>
         </div>
 
-        <PricingSection />
+        <div id="pricing">
+          <PricingSection />
+        </div>
         <FAQSection />
-        <BookIntroContactSection />
+        <div id="book-intro">
+          <BookIntroContactSection />
+        </div>
         <Footer />
       </main>
     </div>
